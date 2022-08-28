@@ -4,5 +4,5 @@ from Movies import views
 
 
 urlpatterns = [
-    path("getmovies/", views.Movies, name="movies")
+    path("", views.index, name="index")
 ]
