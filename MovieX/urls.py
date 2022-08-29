@@ -30,6 +30,7 @@ favicon = RedirectView.as_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("Movies.urls")),
+    path("api/", include("Api.urls")),
     path('favicon.ico', favicon),
 ]
 
