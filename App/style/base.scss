@@ -1,0 +1,78 @@
+@use 'config' as g;
+@use 'theme';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background: #040404;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #272727;
+    border: 2px solid #040404;
+    border-radius: 20px;
+}
+
+// selection
+::selection {
+    color: #fff;
+    background-color: #555;
+}
+
+body {
+    overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        @include theme.dark;
+
+        background-color: var(--primary-color);
+        color: var(--accent-color);
+    }
+}
+@media (prefers-color-scheme: light) {
+    body {
+        @include theme.light;
+
+        background-color: var(--primary-color);
+        color: var(--accent-color);
+    }
+}
+
+.title {
+    font-size: g.$TITLE_FONTSIZE;
+}
+.title_small {
+    font-size: g.$TITLE_FONTSIZE_SMALL;
+}
+.title_smaller {
+    font-size: g.$TITLE_FONTSIZE_SMALLER;
+}
+
+.description {
+    font-size: g.$DESCRIPTION_FONT_SIZE;
+}
+.description_small {
+    font-size: g.$DESCRIPTION_FONT_SIZE_SMALL;
+}
+
+.icon {
+    display: grid;
+    place-items: center;
+}
+
+.category {
+    font-family: 'Oleo Script', cursive;
+    font-weight: 600;
+}
