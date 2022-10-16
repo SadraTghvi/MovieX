@@ -1,2 +1,2 @@
 # ShareWith
-ShareWith is a cinematic
+ShareWith is a photo gallery album
