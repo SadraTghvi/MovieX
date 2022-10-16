@@ -48,16 +48,16 @@
         "webpack-cli": "^4.9.2",
         "webpack-dev-server": "^4.8.1"
     },
-    "description": "MovieX is a cinematic",
+    "description": "ShareWith is a cinematic",
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/SadraTghvi/MovieX.git"
+        "url": "git+https://github.com/SadraTghvi/ShareWith.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/SadraTghvi/MovieX/issues"
+        "url": "https://github.com/SadraTghvi/ShareWith/issues"
     },
-    "homepage": "https://github.com/SadraTghvi/MovieX#readme"
+    "homepage": "https://github.com/SadraTghvi/ShareWith#readme"
 }
