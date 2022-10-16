@@ -1,2 +1,2 @@
-# MovieX
-MovieX is a cinematic
+# ShareWith
+ShareWith is a photo gallery album
