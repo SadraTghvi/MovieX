@@ -3,6 +3,6 @@ from Api.views import *
 
 
 urlpatterns = [
-    path("heromovie/", HeroMovie, name="hero-movie"),
-    path("all-movies/", AllMovies, name="all-movies")
+    path("herophoto/", HeroPhoto, name="hero-photo"),
+    path("all-photos/", AllPhotos, name="all-movies")
 ]
