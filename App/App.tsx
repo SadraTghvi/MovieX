@@ -1,7 +1,9 @@
 import React, { FC } from 'react'
 
-import Home from 'Home'
+import loadable from '@loadable/component'
 import { Route, Routes } from 'react-router-dom'
+
+const Home = loadable(() => import('Home'))
 
 const App: FC = () => {
     return (
