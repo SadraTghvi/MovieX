@@ -50,14 +50,20 @@ body {
     }
 }
 
+.title_hero {
+    font-size: g.$TITLE_FONTSIZE_HERO;
+}
 .title {
     font-size: g.$TITLE_FONTSIZE;
+    font-family: 'Open Sans', sans-serif;
 }
 .title_small {
     font-size: g.$TITLE_FONTSIZE_SMALL;
+    font-family: 'Open Sans', sans-serif;
 }
 .title_smaller {
     font-size: g.$TITLE_FONTSIZE_SMALLER;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .description {
@@ -70,9 +76,4 @@ body {
 .icon {
     display: grid;
     place-items: center;
-}
-
-.category {
-    font-family: 'Oleo Script', cursive;
-    font-weight: 600;
 }
