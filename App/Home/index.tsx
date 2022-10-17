@@ -1,7 +1,15 @@
 import React from 'react'
 
+import HeroSection from './HeroSection'
+
+import './style/home.scss'
+
 const Home = () => {
-    return <div>Home</div>
+    return (
+        <main className='home-container'>
+            <HeroSection />
+        </main>
+    )
 }
 
 export default Home
