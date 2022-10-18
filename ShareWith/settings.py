@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # project app(s)
     "Api",
+    "Gallery",
 ]
 
 MIDDLEWARE = [
