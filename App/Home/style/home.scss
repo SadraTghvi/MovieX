@@ -5,9 +5,39 @@ main.home-container {
     section.hero-section {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        flex-direction: column;
 
         width: 100%;
         height: 90vh;
+
+        position: relative;
+        isolation: isolate;
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+
+            height: 100%;
+            width: 100%;
+
+            @media screen and (max-width: 1024px) {
+                width: 100%;
+                height: unset;
+                aspect-ratio: 1/0.7;
+            }
+
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+
+            z-index: -1;
+        }
+        .hero-titles {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1vh;
+        }
     }
 }
