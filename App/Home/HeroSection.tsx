@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-import axios from 'axios'
+import { useAtom } from 'jotai'
+
+import { HeroImgList } from '../state'
 
 const HeroSection = () => {
-    const [HeroImg, setHeroImg] = useState<string>('')
+    // const [HeroImg, setHeroImg] = useState<string>('')
+    const [HeroImg, UpdateHeroImg] = useAtom(HeroImgList)
 
     useEffect(() => {
-        axios
-            .get('http://localhost:7000/api/herophoto/', {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json;charset=UTF-8',
-                },
-            })
-            .then(res => setHeroImg(res.data.url))
-            .catch(res => console.log(res))
+        UpdateHeroImg()
     }, [])
+
+    useEffect(() => {
+        console.log(HeroImg)
+    }, [HeroImg])
 
     return (
         <section className='hero-section'>
             <div
                 className='hero-bg'
-                style={{ backgroundImage: `url(${HeroImg})` }}
+                style={{ backgroundImage: `url(${HeroImg.prevImg})` }}
             ></div>
             <div className='hero-titles'>
                 <div className='titles-wrapper'>
