@@ -2,15 +2,10 @@ import React, { useEffect } from 'react'
 
 import { useAtom } from 'jotai'
 
-import { HeroImgList } from '../state'
+import { HeroImgAtom } from '../state'
 
 const HeroSection = () => {
-    // const [HeroImg, setHeroImg] = useState<string>('')
-    const [HeroImg, UpdateHeroImg] = useAtom(HeroImgList)
-
-    useEffect(() => {
-        UpdateHeroImg()
-    }, [])
+    const [HeroImg, _] = useAtom(HeroImgAtom)
 
     useEffect(() => {
         console.log(HeroImg)
@@ -20,7 +15,7 @@ const HeroSection = () => {
         <section className='hero-section'>
             <div
                 className='hero-bg'
-                style={{ backgroundImage: `url(${HeroImg.prevImg})` }}
+                style={{ backgroundImage: `url(${HeroImg[0]})` }}
             ></div>
             <div className='hero-titles'>
                 <div className='titles-wrapper'>
