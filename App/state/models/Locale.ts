@@ -1,6 +1,3 @@
-interface HeroImg {
-    prevImg: string
-    nextImg: string
-}
+type HeroImg = string[]
 
 export { HeroImg }
