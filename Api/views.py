@@ -1,3 +1,4 @@
+import json
 import random
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -13,10 +14,12 @@ from Gallery.models import Album
 
 
 def HeroPhoto(request):
-    AlbumsPhotos = Album.objects.all()
-    randomAlbumImg = random.choice(AlbumsPhotos)
+    AlbumsPhotosImgs = []
 
-    return JsonResponse({"url": randomAlbumImg.img.url})
+    for i in Album.objects.all():
+        AlbumsPhotosImgs.append(i.img.url)
+
+    return JsonResponse({"urls": AlbumsPhotosImgs}, safe=False)
 
 
 def AllPhotos(request):
