@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import { useAtom } from 'jotai'
 
@@ -7,16 +7,10 @@ import { HeroImgAtom } from '../state'
 const HeroSection = () => {
     const [HeroImg, _] = useAtom(HeroImgAtom)
 
-    useEffect(() => {
-        console.log(HeroImg)
-    }, [HeroImg])
-
     return (
         <section className='hero-section'>
-            <div
-                className='hero-bg'
-                style={{ backgroundImage: `url(${HeroImg[0]})` }}
-            ></div>
+            <HeroSectionImg imgs={HeroImg} />
+
             <div className='hero-titles'>
                 <div className='titles-wrapper'>
                     <div className='title_hero brand'>
@@ -84,6 +78,56 @@ const HeroSection = () => {
                 </div>
             </div>
         </section>
+    )
+}
+
+interface HeroSectionImg {
+    imgs: string[]
+}
+
+const HeroSectionImg: FC<HeroSectionImg> = ({ imgs }) => {
+    const [ActiveImg, setActiveImg] = useState(0)
+
+    useEffect(() => {
+        const StartTimer = setTimeout(() => {
+            setInterval(() => {
+                setActiveImg(activeImgValue => {
+                    if (imgs[activeImgValue + 1]) {
+                        return activeImgValue + 1
+                    } else {
+                        return 0
+                    }
+                })
+            }, 3000)
+        }, 6000)
+
+        return () => clearInterval(StartTimer)
+    }, [imgs])
+
+    useEffect(() => {
+        console.log(ActiveImg)
+    }, [ActiveImg])
+
+    return (
+        <div className='hero-bg-wrapper'>
+            {imgs.map((_, index) => {
+                return (
+                    <img
+                        className={`hero-bg ${
+                            ActiveImg === index
+                                ? 'active'
+                                : '' || ActiveImg + 1 === index
+                                ? 'next'
+                                : '' || ActiveImg - 1 === index
+                                ? 'before'
+                                : ''
+                        }`}
+                        key={index}
+                        src={imgs[index]}
+                    />
+                )
+            })}
+        </div>
     )
 }
 
