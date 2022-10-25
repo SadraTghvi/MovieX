@@ -18,10 +18,6 @@ const LastAlbums = () => {
         window.addEventListener('scroll', UpdateTransform)
     }, [])
 
-    useEffect(() => {
-        console.log(Transform)
-    }, [Transform])
-
     return (
         <section ref={container} className='last-albums'>
             <div className={`albums-title title ${C(Transform <= 600)}`}>
