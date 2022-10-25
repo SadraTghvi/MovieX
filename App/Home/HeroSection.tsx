@@ -104,10 +104,6 @@ const HeroSectionImg: FC<HeroSectionImg> = ({ imgs }) => {
         return () => clearInterval(StartTimer)
     }, [imgs])
 
-    useEffect(() => {
-        console.log(ActiveImg)
-    }, [ActiveImg])
-
     return (
         <div className='hero-bg-wrapper'>
             {imgs.map((_, index) => {
