@@ -118,8 +118,6 @@ const HeroSectionImg: FC<HeroSectionImg> = ({ imgs }) => {
                                 ? 'active'
                                 : '' || ActiveImg + 1 === index
                                 ? 'next'
-                                : '' || ActiveImg - 1 === index
-                                ? 'before'
                                 : ''
                         }`}
                         key={index}
