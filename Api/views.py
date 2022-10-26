@@ -22,5 +22,21 @@ def HeroPhoto(request):
     return JsonResponse({"urls": AlbumsPhotosImgs}, safe=False)
 
 
+def LastAlbums(request):
+
+    LastAlbumsArr = []
+
+    for i in Album.objects.all():
+        LastAlbumsArr.append({
+            "title": i.title,
+            "description": i.description,
+            "img": i.img.url
+        })
+
+    return JsonResponse({
+        "lastAlbums": LastAlbumsArr
+    })
+
+
 def AllPhotos(request):
     return JsonResponse({"status": 200})
