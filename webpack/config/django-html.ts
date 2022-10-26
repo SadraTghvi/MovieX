@@ -4,7 +4,7 @@ import { Compiler } from 'webpack'
 import { BASE_DIR, APP_DIR, resolve } from './path'
 
 const HtmlPG = new HtmlWP({
-    filename: resolve(BASE_DIR, 'Movies/templates/index.html'),
+    filename: resolve(BASE_DIR, 'ShareWith/templates/index.html'),
     template: resolve(APP_DIR, 'public/django.html'),
     inject: true,
     publicPath: '/dist/',
