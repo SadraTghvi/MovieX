@@ -93,7 +93,7 @@ section.last-albums {
             isolation: isolate;
             overflow: hidden;
 
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.5s ease-in-out, margin 1s ease-in-out;
 
             @media screen and (min-width: 1024px) {
                 margin-top: 50px;
@@ -114,6 +114,10 @@ section.last-albums {
                             opacity: 1;
                         }
                     }
+                }
+
+                &.margin {
+                    margin: 0;
                 }
             }
 
