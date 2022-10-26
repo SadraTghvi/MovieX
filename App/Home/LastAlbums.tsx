@@ -110,17 +110,14 @@ const LastAlbums: FC = () => {
                 <span>Our Latest Albums</span>
             </div>
             <div className='albums-wrapper'>
-                {/* @ts-ignore */}
                 <AlbumCard
                     transform={ReturnCardTransform(Transform)}
                     {...ReturnCardData(1)}
                 />
-                {/* @ts-ignore */}
                 <AlbumCard
                     transform={ReturnCardTransform(Transform)}
                     {...ReturnCardData(2)}
                 />
-                {/* @ts-ignore */}
                 <AlbumCard
                     transform={ReturnCardTransform(Transform)}
                     {...ReturnCardData(3)}
@@ -131,9 +128,9 @@ const LastAlbums: FC = () => {
 }
 
 interface AlbumCardProps {
-    title: string
-    description: string
-    img: string
+    title?: string
+    description?: string
+    img?: string
     transform?: number
 }
 
