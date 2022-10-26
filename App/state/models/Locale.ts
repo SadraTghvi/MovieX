@@ -1,3 +1,9 @@
 type HeroImg = string[]
 
-export { HeroImg }
+interface LastAlbum {
+    title: string
+    description: string
+    img: string
+}
+
+export { HeroImg, LastAlbum }
