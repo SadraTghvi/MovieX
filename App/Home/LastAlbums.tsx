@@ -67,14 +67,17 @@ const LastAlbums: FC = () => {
             <div className='albums-wrapper'>
                 <AlbumCard
                     transform={ReturnCardTransform(Transform)}
+                    scrollTop={Transform}
                     {...ReturnCardData(1)}
                 />
                 <AlbumCard
                     transform={ReturnCardTransform(Transform)}
+                    scrollTop={Transform}
                     {...ReturnCardData(2)}
                 />
                 <AlbumCard
                     transform={ReturnCardTransform(Transform)}
+                    scrollTop={Transform}
                     {...ReturnCardData(3)}
                 />
             </div>
@@ -87,18 +90,25 @@ interface AlbumCardProps {
     description?: string
     img?: string
     transform?: number
+    scrollTop?: number
 }
 
 const AlbumCard: FC<AlbumCardProps> = ({
     title,
     description,
-    transform,
     img,
+    transform,
+    scrollTop,
 }) => {
+    console.log(scrollTop)
     return (
         <div
-            className='album-card-wrapper'
-            style={{ transform: `translateY(${transform}px)` }}
+            className={`album-card-wrapper ${
+                scrollTop && scrollTop <= 10 ? 'margin' : ''
+            }`}
+            style={{
+                transform: `translateY(${transform}px)`,
+            }}
         >
             <img src={img} alt='' />
             <div className='content-wrapper'>
