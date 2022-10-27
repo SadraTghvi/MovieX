@@ -38,25 +38,21 @@ const LastAlbums: FC = () => {
 
     const ReturnCardData = (CardIndex: number) => {
         if (CardIndex == 1) {
-            if (Transform < 600 && Transform >= 300) return LastAlbums[0]
+            if (Transform < 500 && Transform >= 300) return LastAlbums[0]
             else if (Transform < 300 && Transform >= 100) return LastAlbums[1]
             else if (Transform < 100) return LastAlbums[2]
         }
         if (CardIndex == 2) {
-            if (Transform < 600 && Transform >= 300) return LastAlbums[3]
+            if (Transform < 500 && Transform >= 300) return LastAlbums[3]
             else if (Transform < 300 && Transform >= 100) return LastAlbums[4]
             else if (Transform < 100) return LastAlbums[5]
         }
         if (CardIndex == 3) {
-            if (Transform < 600 && Transform >= 300) return LastAlbums[6]
+            if (Transform < 500 && Transform >= 300) return LastAlbums[6]
             else if (Transform < 300 && Transform >= 100) return LastAlbums[7]
             else if (Transform < 100) return LastAlbums[8]
         }
-        return {
-            title: 'lorem ipsum',
-            description: 'lorem ipsum the sdadw dsadw sda pusdad',
-            img: 'https://picsum.photos/400/500',
-        }
+        return {}
     }
 
     return (
@@ -100,7 +96,6 @@ const AlbumCard: FC<AlbumCardProps> = ({
     transform,
     scrollTop,
 }) => {
-    console.log(scrollTop)
     return (
         <div
             className={`album-card-wrapper ${
@@ -110,7 +105,11 @@ const AlbumCard: FC<AlbumCardProps> = ({
                 transform: `translateY(${transform}px)`,
             }}
         >
-            <img src={img} alt='' />
+            <img
+                className={`card-img ${C(img)}`}
+                src={img || 'https://picsum.photos/400/500'}
+                alt=''
+            />
             <div className='content-wrapper'>
                 <div className='card-title title_small'>{title}</div>
                 <div className='card-description titles_smaller'>
