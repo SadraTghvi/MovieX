@@ -121,13 +121,20 @@ section.last-albums {
                 }
             }
 
-            img {
+            .card-img {
                 position: absolute;
                 z-index: -1;
 
                 height: 100%;
 
                 transition: transform 0.5s ease-in-out;
+
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+
+                &.active {
+                    opacity: 1;
+                }
             }
 
             .content-wrapper {
