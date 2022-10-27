@@ -52,6 +52,16 @@ const LastAlbums: FC = () => {
             else if (Transform < 300 && Transform >= 100) return LastAlbums[7]
             else if (Transform < 100) return LastAlbums[8]
         }
+        if (CardIndex == 4) {
+            if (Transform < 500 && Transform >= 300) return LastAlbums[6]
+            else if (Transform < 300 && Transform >= 100) return LastAlbums[7]
+            else if (Transform < 100) return LastAlbums[8]
+        }
+        if (CardIndex == 5) {
+            if (Transform < 500 && Transform >= 300) return LastAlbums[9]
+            else if (Transform < 300 && Transform >= 100) return LastAlbums[10]
+            else if (Transform < 100) return LastAlbums[11]
+        }
         return {}
     }
 
@@ -61,21 +71,39 @@ const LastAlbums: FC = () => {
                 <span>Our Latest Albums</span>
             </div>
             <div className='albums-wrapper'>
-                <AlbumCard
-                    transform={ReturnCardTransform(Transform)}
-                    scrollTop={Transform}
-                    {...ReturnCardData(1)}
-                />
-                <AlbumCard
-                    transform={ReturnCardTransform(Transform)}
-                    scrollTop={Transform}
-                    {...ReturnCardData(2)}
-                />
-                <AlbumCard
-                    transform={ReturnCardTransform(Transform)}
-                    scrollTop={Transform}
-                    {...ReturnCardData(3)}
-                />
+                {Array.from(Array(5).keys()).map((_, index) => {
+                    const arr = Array.from(Array(5).keys())
+                    const middle = arr[Math.round((arr.length - 1) / 2)]
+
+                    const CardMargin = (index: number): number => {
+                        if (middle) {
+                            if (index === middle) return 0
+                            else if (
+                                index + 1 === middle ||
+                                index - 1 === middle
+                            ) {
+                                return 50
+                            } else {
+                                return 90
+                            }
+                        }
+                        return 0
+                    }
+
+                    return (
+                        <AlbumCard
+                            key={index}
+                            transform={
+                                Transform <= 10
+                                    ? 0
+                                    : ReturnCardTransform(Transform) +
+                                      CardMargin(index)
+                            }
+                            scrollTop={Transform}
+                            {...ReturnCardData(index + 1)}
+                        />
+                    )
+                })}
             </div>
         </section>
     )
@@ -94,13 +122,10 @@ const AlbumCard: FC<AlbumCardProps> = ({
     description,
     img,
     transform,
-    scrollTop,
 }) => {
     return (
         <div
-            className={`album-card-wrapper ${
-                scrollTop && scrollTop <= 10 ? 'margin' : ''
-            }`}
+            className='album-card-wrapper '
             style={{
                 transform: `translateY(${transform}px)`,
             }}
