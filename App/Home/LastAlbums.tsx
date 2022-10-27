@@ -111,8 +111,8 @@ const AlbumCard: FC<AlbumCardProps> = ({
                 alt=''
             />
             <div className='content-wrapper'>
-                <div className='card-title title_small'>{title}</div>
-                <div className='card-description titles_smaller'>
+                <div className='card-title title'>{title}</div>
+                <div className='card-description titles_small'>
                     {description}
                 </div>
             </div>
