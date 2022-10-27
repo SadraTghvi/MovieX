@@ -63,13 +63,13 @@ const HeroSection = () => {
                 </div>
                 <div className='cta-wrapper'>
                     <button
-                        className='main-cta'
+                        className='main-cta title_small'
                         style={{ animationDelay: '3.5s' }}
                     >
                         Sign Up
                     </button>
                     <button
-                        className='other-cta'
+                        className='other-cta title_small'
                         style={{ animationDelay: '3.75s' }}
                     >
                         {' '}
