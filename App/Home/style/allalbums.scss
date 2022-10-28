@@ -68,21 +68,51 @@ section.all-albums {
 
     .all-albums-wrapper {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
+
+        gap: 0.7vw;
 
         height: 100%;
         width: 100%;
 
-        .album-column {
-            height: 100%;
+        overflow: hidden;
+
+        .albums-column {
+            height: auto;
 
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
 
-            background: #000;
+            gap: 1vh;
 
-            padding: 10px;
+            .album-column {
+                width: 100%;
+                aspect-ratio: 3 / 4;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+
+                position: relative;
+                isolation: isolate;
+
+                @media screen and (max-width: 1024px) {
+                    aspect-ratio: 2 / 3;
+                }
+
+                .album-column-img {
+                    position: absolute;
+                    inset: 0;
+
+                    width: 100%;
+                    object-fit: cover;
+                    height: 100%;
+
+                    z-index: -1;
+                }
+            }
         }
     }
 }
