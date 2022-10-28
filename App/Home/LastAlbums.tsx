@@ -67,7 +67,7 @@ const LastAlbums: FC = () => {
 
     return (
         <section ref={container} className='last-albums'>
-            <div className={`albums-title title ${C(Transform <= 600)}`}>
+            <div className={`albums-title title_hero ${C(Transform <= 600)}`}>
                 <span>Our Latest Albums</span>
             </div>
             <div className='albums-wrapper'>
