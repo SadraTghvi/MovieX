@@ -67,9 +67,11 @@ const LastAlbums: FC = () => {
 
     return (
         <section ref={container} className='last-albums'>
-            <div className={`albums-title title_hero ${C(Transform <= 600)}`}>
+            <header
+                className={`albums-title title_hero ${C(Transform <= 600)}`}
+            >
                 <span>Our Latest Albums</span>
-            </div>
+            </header>
             <div className='albums-wrapper'>
                 {Array.from(Array(5).keys()).map((_, index) => {
                     const arr = Array.from(Array(5).keys())
@@ -134,6 +136,7 @@ const AlbumCard: FC<AlbumCardProps> = ({
                 className={`card-img ${C(img)}`}
                 src={img || 'https://picsum.photos/400/500'}
                 alt=''
+                loading='lazy'
             />
             <div className='content-wrapper'>
                 <div className='card-title title'>{title}</div>
