@@ -38,5 +38,10 @@ def LastAlbums(request):
     })
 
 
-def AllPhotos(request):
-    return JsonResponse({"status": 200})
+def AllAlbums(request):
+    LastAlbumsArr = []
+
+    for i in Album.objects.all():
+        LastAlbumsArr.append(i.img.url)
+
+    return JsonResponse({"albums": LastAlbumsArr})
