@@ -4,6 +4,8 @@ import { useAtom } from 'jotai'
 
 import { HeroImgAtom } from '../state'
 
+import './style/homehero.scss'
+
 const HeroSection = () => {
     const [HeroImg, _] = useAtom(HeroImgAtom)
 

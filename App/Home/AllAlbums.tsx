@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './style/allalbums.scss'
+
 const AllAlbums = () => {
     return (
         <section className='all-albums'>

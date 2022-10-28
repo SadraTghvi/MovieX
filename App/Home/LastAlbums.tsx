@@ -5,6 +5,8 @@ import { C } from '@00-team/utils'
 import { useAtom } from 'jotai'
 import { LastAlbumAtom } from 'state'
 
+import './style/lastalbums.scss'
+
 const LastAlbums: FC = () => {
     const [LastAlbums, UpdateLastAlbums] = useAtom(LastAlbumAtom)
 
