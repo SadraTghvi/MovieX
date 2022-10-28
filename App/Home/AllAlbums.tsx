@@ -58,7 +58,7 @@ const AllAlbums = () => {
             </header>
             <div
                 className='all-albums-wrapper'
-                onClick={() => open('/gallery', '_self')}
+                // onClick={() => open('/gallery', '_self')}
             >
                 {Array.from(Array(albumsColumn()).keys()).map((_, idx01) => {
                     return (
