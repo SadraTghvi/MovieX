@@ -2,9 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { C } from '@00-team/utils'
 
+import { useAtom } from 'jotai'
+import { AllAlbumsAtom } from 'state'
+
 import './style/allalbums.scss'
 
 const AllAlbums = () => {
+    const [AllAlbumsImgs, UpdateAllAlbumsImgs] = useAtom(AllAlbumsAtom)
+
     const container = useRef<HTMLDivElement>(null)
     const [Intersected, setIntersected] = useState(false)
 
@@ -29,23 +34,51 @@ const AllAlbums = () => {
         }
     }, [container])
 
-    const albumsColumn: number = Math.round(innerWidth / 360)
+    useEffect(() => {
+        UpdateAllAlbumsImgs()
+    }, [])
+
+    const albumsColumn: number = innerWidth >= 1024 ? 4 : 2
+
+    let ChangeableAllImgs = [...AllAlbumsImgs]
+
+    // calculate albums row
+    const CAR = () => Math.floor(AllAlbumsImgs.length / albumsColumn)
 
     return (
         <section className='all-albums' ref={container}>
             <header className={`all-albums-title title_hero ${C(Intersected)}`}>
                 <span>Explore Our Albums</span>
             </header>
-            <div className='all-albums-wrapper'>
-                {Array.from(Array(albumsColumn).keys()).map((_, index) => {
+            <div
+                className='all-albums-wrapper'
+                onClick={() => open('/gallery', '_self')}
+            >
+                {Array.from(Array(albumsColumn).keys()).map((_, idx01) => {
                     return (
                         <div
-                            key={index}
-                            className='album-column'
+                            key={idx01}
+                            className='albums-column'
                             style={{
                                 width: `${Math.floor(100 / albumsColumn)}%`,
                             }}
-                        ></div>
+                        >
+                            {Array.from(Array(CAR()).keys()).map((_, idx02) => {
+                                return (
+                                    <img
+                                        key={idx02}
+                                        className='album-column-img'
+                                        loading='lazy'
+                                        src={
+                                            ChangeableAllImgs.sort(
+                                                () => Math.random() - 0.5
+                                            )[idx02]
+                                        }
+                                        alt=''
+                                    />
+                                )
+                            })}
+                        </div>
                     )
                 })}
             </div>
