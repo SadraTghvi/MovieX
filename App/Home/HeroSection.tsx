@@ -27,7 +27,7 @@ const HeroSection = () => {
                             </span>
                         ))}
                     </div>
-                    <div className='title'>
+                    <div className='title second'>
                         {'Share Your Purest Moments With Others'
                             .split(' ')
                             .map((word, index) => (
@@ -44,7 +44,7 @@ const HeroSection = () => {
                                 </span>
                             ))}
                     </div>
-                    <div className='title_small'>
+                    <div className='title_small last'>
                         {'Sign Up Now And Explore'
                             .split(' ')
                             .map((word, index) => (
