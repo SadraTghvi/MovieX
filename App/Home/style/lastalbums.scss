@@ -7,12 +7,6 @@ section.last-albums {
     flex-direction: column;
     gap: 5vh;
 
-    @media screen and (min-width: 1440px) {
-        // debug
-        height: 100vh;
-        //
-    }
-
     padding: 7vh 5vw;
 
     background-color: var(--sixty-percent);
