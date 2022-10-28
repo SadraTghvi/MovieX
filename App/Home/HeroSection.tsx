@@ -1,13 +1,12 @@
 import React, { FC, useEffect, useState } from 'react'
 
-import { useAtom } from 'jotai'
-
-import { HeroImgAtom } from '../state'
+import { useAtomValue } from 'jotai'
+import { HeroImgAtom } from 'state'
 
 import './style/homehero.scss'
 
 const HeroSection = () => {
-    const [HeroImg, _] = useAtom(HeroImgAtom)
+    const HeroImg = useAtomValue(HeroImgAtom)
 
     return (
         <section className='hero-section'>
