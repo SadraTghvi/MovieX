@@ -1,0 +1,20 @@
+section.all-albums {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 5vh;
+
+    @media screen and (min-width: 1440px) {
+        // debug
+        height: 100vh;
+        //
+    }
+
+    padding: 7vh 5vw;
+
+    background-color: var(--sixty-percent);
+    color: var(--primary-color);
+}
