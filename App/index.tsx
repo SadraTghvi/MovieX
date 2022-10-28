@@ -5,6 +5,7 @@ import App from 'App'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import './style/base.scss'
+import './style/fonts/imports.scss'
 
 const Root: FC = () => {
     return (
