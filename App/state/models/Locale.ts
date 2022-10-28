@@ -6,4 +6,6 @@ interface LastAlbum {
     img: string
 }
 
-export { HeroImg, LastAlbum }
+type AllAlbum = string[]
+
+export { HeroImg, LastAlbum, AllAlbum }
