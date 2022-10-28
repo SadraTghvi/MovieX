@@ -69,6 +69,11 @@ section.hero-section {
 
                 text-shadow: -1px 2px 2px var(--primary-color);
             }
+
+            .second,
+            .last {
+                color: var(--accent-color);
+            }
         }
 
         .cta-wrapper {
