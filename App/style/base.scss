@@ -54,22 +54,25 @@ body {
 
 .title_hero {
     font-size: g.$TITLE_FONTSIZE_HERO;
+    font-family: Roman;
 }
 .title {
     font-size: g.$TITLE_FONTSIZE;
     font-family: 'Open Sans', sans-serif;
+    font-family: Roman;
 }
 .title_small {
     font-size: g.$TITLE_FONTSIZE_SMALL;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Helvetica;
 }
 .title_smaller {
     font-size: g.$TITLE_FONTSIZE_SMALLER;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Helvetica;
 }
 
 .description {
     font-size: g.$DESCRIPTION_FONT_SIZE;
+    font-family: Helvetica;
 }
 .description_small {
     font-size: g.$DESCRIPTION_FONT_SIZE_SMALL;
