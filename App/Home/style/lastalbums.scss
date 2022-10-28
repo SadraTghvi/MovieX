@@ -67,8 +67,7 @@ section.last-albums {
         gap: 5vw;
 
         @media screen and (max-width: 1024px) {
-            flex-direction: column;
-            gap: 5vh;
+            gap: 8vw;
         }
 
         .album-card-wrapper {
@@ -92,6 +91,10 @@ section.last-albums {
             overflow: hidden;
 
             transition: transform 0.5s ease-in-out, margin 1s ease-in-out;
+
+            @media screen and (max-width: 1024px) {
+                width: 200px;
+            }
 
             @media screen and (min-width: 1024px) {
                 &:hover {
