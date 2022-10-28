@@ -38,12 +38,18 @@ const AllAlbums = () => {
         UpdateAllAlbumsImgs()
     }, [])
 
-    const albumsColumn: number = innerWidth >= 1024 ? 4 : 2
+    const albumsColumn = (): number => {
+        if (innerWidth >= 1440) return 5
+        else if (innerWidth < 1440 && innerWidth >= 1024) return 4
+        else if (innerWidth < 1024 && innerWidth >= 768) return 3
+        else if (innerWidth < 768) return 2
+        return 4
+    }
 
     let ChangeableAllImgs = [...AllAlbumsImgs]
 
     // calculate albums row
-    const CAR = () => Math.floor(AllAlbumsImgs.length / albumsColumn)
+    const CAR = () => Math.floor(AllAlbumsImgs.length / albumsColumn())
 
     return (
         <section className='all-albums' ref={container}>
@@ -54,13 +60,13 @@ const AllAlbums = () => {
                 className='all-albums-wrapper'
                 onClick={() => open('/gallery', '_self')}
             >
-                {Array.from(Array(albumsColumn).keys()).map((_, idx01) => {
+                {Array.from(Array(albumsColumn()).keys()).map((_, idx01) => {
                     return (
                         <div
                             key={idx01}
                             className='albums-column'
                             style={{
-                                width: `${Math.floor(100 / albumsColumn)}%`,
+                                width: `${Math.floor(100 / albumsColumn())}%`,
                             }}
                         >
                             {Array.from(Array(CAR()).keys()).map((_, idx02) => {
