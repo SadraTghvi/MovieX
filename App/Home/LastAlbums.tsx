@@ -26,7 +26,8 @@ const LastAlbums: FC = () => {
 
     useEffect(() => {
         UpdateTransform()
-        window.addEventListener('scroll', UpdateTransform)
+        const body = document.getElementsByClassName('home-container')[0]
+        body && body.addEventListener('scroll', UpdateTransform)
     }, [])
 
     const ReturnCardTransform = (scrollTop: number): number => {
