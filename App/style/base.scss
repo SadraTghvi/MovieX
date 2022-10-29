@@ -33,6 +33,15 @@ body {
     overflow-x: hidden;
 
     font-family: 'Open Sans', sans-serif;
+
+    #root {
+        height: 100vh;
+        overflow: hidden;
+
+        main {
+            overflow-y: auto;
+        }
+    }
 }
 
 @media (prefers-color-scheme: dark) {
