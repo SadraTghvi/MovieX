@@ -8,4 +8,6 @@ interface LastAlbum {
 
 type AllAlbum = string[]
 
-export { HeroImg, LastAlbum, AllAlbum }
+type NavActiveType = boolean
+
+export { HeroImg, LastAlbum, AllAlbum, NavActiveType }
