@@ -3,15 +3,35 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import { C } from '@00-team/utils'
 
 import { useAtom } from 'jotai'
-import { LastAlbumAtom } from 'state'
+import { LastAlbum, LastAlbumAtom } from 'state'
 
 import './style/lastalbums.scss'
 
 const LastAlbums: FC = () => {
     const [LastAlbums, UpdateLastAlbums] = useAtom(LastAlbumAtom)
 
-    const container = useRef<HTMLDivElement>(null)
+    useEffect(() => {
+        UpdateLastAlbums()
+    }, [])
+
+    return (
+        <section className='last-albums'>
+            <header className={`albums-title title_hero `}>
+                <span>Our Latest Albums</span>
+            </header>
+            <AlbumsWrapper LastAlbums={LastAlbums} />
+        </section>
+    )
+}
+
+interface AlbumsWrapperProps {
+    LastAlbums: LastAlbum[]
+}
+
+const AlbumsWrapper: FC<AlbumsWrapperProps> = ({ LastAlbums }) => {
     const [Transform, setTransform] = useState(0)
+
+    const container = useRef<HTMLDivElement>(null)
 
     const UpdateTransform = () => {
         if (!container.current) return
@@ -21,96 +41,79 @@ const LastAlbums: FC = () => {
     }
 
     useEffect(() => {
-        UpdateLastAlbums()
-    }, [])
-
-    useEffect(() => {
         UpdateTransform()
+
         const body = document.getElementsByClassName('home-container')[0]
-        body && body.addEventListener('scroll', UpdateTransform)
+        body && body.addEventListener('wheel', UpdateTransform)
     }, [])
 
-    const ReturnCardTransform = (scrollTop: number): number => {
-        if (scrollTop >= 600) return 40
-        else if (scrollTop < 600 && scrollTop >= 300) return 30
-        else if (scrollTop < 300 && scrollTop >= 100) return 20
-        else if (scrollTop < 100) return 10
-        else if (scrollTop === 0) return 0
-        else return 0
-    }
+    let LastAlbumsClone = [...LastAlbums]
 
-    const ReturnCardData = (CardIndex: number) => {
-        if (CardIndex == 1) {
-            if (Transform < 500 && Transform >= 300) return LastAlbums[0]
-            else if (Transform < 300 && Transform >= 100) return LastAlbums[1]
-            else if (Transform < 100) return LastAlbums[2]
-        }
-        if (CardIndex == 2) {
-            if (Transform < 500 && Transform >= 300) return LastAlbums[3]
-            else if (Transform < 300 && Transform >= 100) return LastAlbums[4]
-            else if (Transform < 100) return LastAlbums[5]
-        }
-        if (CardIndex == 3) {
-            if (Transform < 500 && Transform >= 300) return LastAlbums[6]
-            else if (Transform < 300 && Transform >= 100) return LastAlbums[7]
-            else if (Transform < 100) return LastAlbums[8]
-        }
-        if (CardIndex == 4) {
-            if (Transform < 500 && Transform >= 300) return LastAlbums[6]
-            else if (Transform < 300 && Transform >= 100) return LastAlbums[7]
-            else if (Transform < 100) return LastAlbums[8]
-        }
-        if (CardIndex == 5) {
-            if (Transform < 500 && Transform >= 300) return LastAlbums[9]
-            else if (Transform < 300 && Transform >= 100) return LastAlbums[10]
-            else if (Transform < 100) return LastAlbums[11]
+    const ReturnCardData = () => {
+        let RandomAlbum =
+            LastAlbumsClone[Math.floor(Math.random() * LastAlbumsClone.length)]
+
+        if (Transform === 0) return {}
+
+        if (Transform < 800 && Transform >= 600) {
+            LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
+            console.log('first')
+            return RandomAlbum
+        } else if (Transform < 600 && Transform >= 400) {
+            console.log('sec')
+            LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
+            return RandomAlbum
+        } else if (Transform < 400) {
+            console.log('third')
+            LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
+            return RandomAlbum
         }
         return {}
     }
 
+    const ReturnCardTransform = (scrollTop: number): number => {
+        console.log(scrollTop)
+        if (scrollTop >= 900) return 40
+        else if (scrollTop < 900 && scrollTop >= 600) return 30
+        else if (scrollTop < 600 && scrollTop >= 400) return 20
+        else if (scrollTop < 400) return 10
+        else if (scrollTop === 0) return 0
+        else return 0
+    }
+
     return (
-        <section ref={container} className='last-albums'>
-            <header
-                className={`albums-title title_hero ${C(Transform <= 600)}`}
-            >
-                <span>Our Latest Albums</span>
-            </header>
-            <div className='albums-wrapper'>
-                {Array.from(Array(5).keys()).map((_, index) => {
-                    const arr = Array.from(Array(5).keys())
-                    const middle = arr[Math.round((arr.length - 1) / 2)]
+        <div className='albums-wrapper' ref={container}>
+            {Array.from(Array(5).keys()).map((_, index) => {
+                const arr = Array.from(Array(5).keys())
+                const middle = arr[Math.round((arr.length - 1) / 2)]
 
-                    const CardMargin = (index: number): number => {
-                        if (middle) {
-                            if (index === middle) return 0
-                            else if (
-                                index + 1 === middle ||
-                                index - 1 === middle
-                            ) {
-                                return 50
-                            } else {
-                                return 90
-                            }
+                const CardMargin = (index: number): number => {
+                    if (middle) {
+                        if (index === middle) return 0
+                        else if (index + 1 === middle || index - 1 === middle) {
+                            return 50
+                        } else {
+                            return 90
                         }
-                        return 0
                     }
+                    return 0
+                }
 
-                    return (
-                        <AlbumCard
-                            key={index}
-                            transform={
-                                Transform <= 10
-                                    ? 0
-                                    : ReturnCardTransform(Transform) +
-                                      CardMargin(index)
-                            }
-                            scrollTop={Transform}
-                            {...ReturnCardData(index + 1)}
-                        />
-                    )
-                })}
-            </div>
-        </section>
+                return (
+                    <AlbumCard
+                        key={index}
+                        transform={
+                            Transform <= 300
+                                ? 0
+                                : ReturnCardTransform(Transform) +
+                                  CardMargin(index)
+                        }
+                        scrollTop={Transform}
+                        {...ReturnCardData()}
+                    />
+                )
+            })}
+        </div>
     )
 }
 
