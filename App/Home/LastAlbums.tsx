@@ -16,11 +16,57 @@ const LastAlbums: FC = () => {
 
     return (
         <section className='last-albums'>
-            <header className={`albums-title title_hero `}>
-                <span>Our Latest Albums</span>
-            </header>
+            <AboutHeader />
             <AlbumsWrapper LastAlbums={LastAlbums} />
         </section>
+    )
+}
+
+const AboutHeader = () => {
+    const [Intersected, setIntersected] = useState(false)
+    const container = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (container.current && !Intersected) {
+            var observer = new IntersectionObserver(
+                ([entry]) => {
+                    if (entry && entry.isIntersecting) {
+                        setIntersected(true)
+                    } else {
+                        if (
+                            container.current &&
+                            container.current.getBoundingClientRect()
+                        ) {
+                            if (
+                                scrollY >
+                                container.current!.getBoundingClientRect().top
+                            ) {
+                                setIntersected(true)
+                            } else {
+                                setIntersected(false)
+                            }
+                        }
+                    }
+                },
+                {
+                    rootMargin: '-100px',
+                }
+            )
+
+            observer.observe(container.current)
+        }
+        return () => {
+            if (observer) observer.disconnect()
+        }
+    }, [container])
+
+    return (
+        <header
+            ref={container}
+            className={`albums-title title_hero ${C(Intersected)}`}
+        >
+            <span>Our Latest Albums</span>
+        </header>
     )
 }
 
@@ -44,29 +90,8 @@ const AlbumsWrapper: FC<AlbumsWrapperProps> = ({ LastAlbums }) => {
         UpdateTransform()
 
         const body = document.getElementsByClassName('home-container')[0]
-        body && body.addEventListener('wheel', UpdateTransform)
+        body && body.addEventListener('scroll', UpdateTransform)
     }, [])
-
-    let LastAlbumsClone = [...LastAlbums]
-
-    const ReturnCardData = () => {
-        let RandomAlbum =
-            LastAlbumsClone[Math.floor(Math.random() * LastAlbumsClone.length)]
-
-        if (Transform === 0) return {}
-
-        if (Transform < 800 && Transform >= 600) {
-            LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
-            return RandomAlbum
-        } else if (Transform < 600 && Transform >= 400) {
-            LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
-            return RandomAlbum
-        } else if (Transform < 400) {
-            LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
-            return RandomAlbum
-        }
-        return {}
-    }
 
     const ReturnCardTransform = (scrollTop: number): number => {
         if (scrollTop >= 900) return 40
@@ -95,6 +120,7 @@ const AlbumsWrapper: FC<AlbumsWrapperProps> = ({ LastAlbums }) => {
                     return 0
                 }
 
+                console.log(LastAlbums)
                 return (
                     <AlbumCard
                         key={index}
@@ -105,7 +131,7 @@ const AlbumsWrapper: FC<AlbumsWrapperProps> = ({ LastAlbums }) => {
                                   CardMargin(index)
                         }
                         scrollTop={Transform}
-                        {...ReturnCardData()}
+                        LastAlbums={LastAlbums}
                     />
                 )
             })}
@@ -114,19 +140,35 @@ const AlbumsWrapper: FC<AlbumsWrapperProps> = ({ LastAlbums }) => {
 }
 
 interface AlbumCardProps {
-    title?: string
-    description?: string
     img?: string
     transform?: number
     scrollTop?: number
+    LastAlbums: LastAlbum[]
 }
 
-const AlbumCard: FC<AlbumCardProps> = ({
-    title,
-    description,
-    img,
-    transform,
-}) => {
+const AlbumCard: FC<AlbumCardProps> = ({ transform, LastAlbums }) => {
+    const [ActiveAlbum, setActiveAlbum] = useState<LastAlbum>({
+        title: 'string',
+        img: 'string',
+        description: 'string',
+    })
+
+    useEffect(() => {
+        let LastAlbumsClone = [...LastAlbums]
+
+        const ChangeAlbum = setInterval(() => {
+            const RandomAlbum =
+                LastAlbumsClone[
+                    Math.floor(Math.random() * LastAlbumsClone.length)
+                ]
+
+            setActiveAlbum(RandomAlbum!)
+            console.log(RandomAlbum)
+        }, 5000)
+
+        return () => clearInterval(ChangeAlbum)
+    }, [LastAlbums])
+
     return (
         <div
             className='album-card-wrapper '
@@ -135,15 +177,15 @@ const AlbumCard: FC<AlbumCardProps> = ({
             }}
         >
             <img
-                className={`card-img ${C(img)}`}
-                src={img || 'https://picsum.photos/400/500'}
+                className={`card-img ${C(ActiveAlbum.img)}`}
+                src={ActiveAlbum.img || 'https://picsum.photos/400/500'}
                 alt=''
                 loading='lazy'
             />
             <div className='content-wrapper'>
-                <div className='card-title title'>{title}</div>
+                <div className='card-title title'>{ActiveAlbum.title}</div>
                 <div className='card-description titles_small'>
-                    {description}
+                    {ActiveAlbum.description}
                 </div>
             </div>
         </div>
