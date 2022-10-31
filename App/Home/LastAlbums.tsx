@@ -57,14 +57,11 @@ const AlbumsWrapper: FC<AlbumsWrapperProps> = ({ LastAlbums }) => {
 
         if (Transform < 800 && Transform >= 600) {
             LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
-            console.log('first')
             return RandomAlbum
         } else if (Transform < 600 && Transform >= 400) {
-            console.log('sec')
             LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
             return RandomAlbum
         } else if (Transform < 400) {
-            console.log('third')
             LastAlbumsClone.splice(LastAlbumsClone.indexOf(RandomAlbum!), 1)
             return RandomAlbum
         }
@@ -72,7 +69,6 @@ const AlbumsWrapper: FC<AlbumsWrapperProps> = ({ LastAlbums }) => {
     }
 
     const ReturnCardTransform = (scrollTop: number): number => {
-        console.log(scrollTop)
         if (scrollTop >= 900) return 40
         else if (scrollTop < 900 && scrollTop >= 600) return 30
         else if (scrollTop < 600 && scrollTop >= 400) return 20
