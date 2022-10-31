@@ -20,6 +20,12 @@
 
     z-index: 999;
 
+    transform: translateY(100%);
+
+    &.active {
+        transform: translateY(0);
+    }
+
     .toggle-nav {
         display: grid;
         place-items: center;
