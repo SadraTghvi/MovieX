@@ -2,11 +2,12 @@ import axios from 'axios'
 
 import { atom } from 'jotai'
 
-import { AllAlbum, HeroImg, LastAlbum } from '../models/Locale'
+import { AllAlbum, HeroImg, LastAlbum, NavActiveType } from '../models/Locale'
 
 const HeroImgs = atom<HeroImg>([])
 const LastAlbums = atom<LastAlbum[]>([])
 const AllAlbums = atom<AllAlbum>([])
+const NavActive = atom<NavActiveType>(false)
 
 const HeroImgAtom = atom(
     get => get(HeroImgs),
@@ -35,4 +36,11 @@ const AllAlbumsAtom = atom(
     }
 )
 
-export { HeroImgAtom, LastAlbumAtom, AllAlbumsAtom }
+const NavActiveAtom = atom(
+    get => get(NavActive),
+    async (_, set, active: boolean) => {
+        set(NavActive, active)
+    }
+)
+
+export { HeroImgAtom, LastAlbumAtom, AllAlbumsAtom, NavActiveAtom }
