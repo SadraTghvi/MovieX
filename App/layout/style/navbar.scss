@@ -5,7 +5,7 @@
     bottom: 0;
 
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 
     padding-bottom: 2rem;
@@ -14,9 +14,16 @@
         padding-bottom: 3rem;
     }
 
+    // debug
+    height: 40vh;
+    //
+
     z-index: 999;
 
     .toggle-nav {
+        display: grid;
+        place-items: center;
+
         width: 85px;
         height: 85px;
 
@@ -25,10 +32,31 @@
         background-color: var(--ten-percent);
         box-shadow: 0px 10px 10px -10px var(--primary-color);
 
+        cursor: pointer;
+
         transition: transform 0.3s ease-in-out;
 
         &:active {
             transform: scale(0.9);
+        }
+        &:hover {
+            transform: scale(1.05);
+            .toggle-icon {
+                opacity: 1;
+            }
+        }
+
+        .toggle-icon {
+            display: grid;
+            place-items: center;
+
+            opacity: 0;
+
+            transition: opacity 0.3s ease-in-out;
+
+            &.active {
+                opacity: 1;
+            }
         }
     }
 }
