@@ -12,6 +12,24 @@ import { NavActiveAtom } from 'state'
 
 import './style/navbar.scss'
 
+const SAMPLE_NAV_PAGES = [
+    {
+        img: 'https://picsum.photos/1920/1080',
+        link: '/',
+        title: 'Home',
+    },
+    {
+        img: 'https://picsum.photos/1920/1080',
+        link: '/gallery',
+        title: 'Gallery',
+    },
+    {
+        img: 'https://picsum.photos/1920/1080',
+        link: '/about',
+        title: 'About Us',
+    },
+]
+
 const Navbar: FC = () => {
     const [IsActive, setIsActive] = useAtom(NavActiveAtom)
 
@@ -27,11 +45,18 @@ const Navbar: FC = () => {
                 </div>
             </div>
             <nav className={`navbar-container ${C(IsActive)}`}>
-                <NavPage
-                    img='https://picsum.photos/200/300'
-                    link='/test'
-                    title='title test'
-                />
+                {SAMPLE_NAV_PAGES.map((item, index) => {
+                    return (
+                        <NavPage
+                            key={index}
+                            img={item.img}
+                            link={item.link}
+                            title={item.title}
+                            className={C(IsActive)}
+                            delay={IsActive ? index * 0.25 : 0}
+                        />
+                    )
+                })}
             </nav>
         </>
     )
@@ -41,14 +66,19 @@ interface NavPageProps {
     img: string
     title: string
     link: string
+    className?: string
+    delay?: number
 }
 
-const NavPage: FC<NavPageProps> = ({ title, img, link }) => {
+const NavPage: FC<NavPageProps> = ({ title, img, link, className, delay }) => {
     return (
         <Link
-            style={{ backgroundImage: `url(${img})` }}
+            style={{
+                backgroundImage: `url(${img})`,
+                transitionDelay: `${delay}s`,
+            }}
             to={link}
-            className='nav-page'
+            className={`nav-page ${className && className}`}
         >
             <div className='title title_hero'> {title} </div>
         </Link>
