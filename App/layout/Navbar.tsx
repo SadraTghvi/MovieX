@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 
 import { C } from '@00-team/utils'
 
@@ -47,6 +47,39 @@ const SAMPLE_NAV_PAGES = [
 
 const Navbar: FC = () => {
     const [IsActive, setIsActive] = useAtom(NavActiveAtom)
+    const [NavTransformX, setNavTransformX] = useState(0)
+
+    const container = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const Navcontainer =
+            document.getElementsByClassName('navbar-container')[0]
+
+        Navcontainer?.addEventListener('mousemove', (e: any) => {
+            ReturnCardTransform(e)
+        })
+    }, [])
+
+    const ReturnCardTransform = (e: any) => {
+        if (!container.current) return
+        const { left } = container.current.getBoundingClientRect()
+        const { right } = container.current.getBoundingClientRect()
+        right
+        left
+        // width divide by two
+        const wdbyt = Math.floor(innerWidth / 2)
+
+        const mouseX = e.pageX
+
+        if (mouseX > wdbyt) {
+            console.log('first')
+            setNavTransformX(NavTransformX - 1)
+        } else if (mouseX <= wdbyt) {
+            console.log('sec')
+            setNavTransformX(NavTransformX + 1)
+        }
+        console.log(container.current.getBoundingClientRect())
+    }
 
     return (
         <>
@@ -59,10 +92,15 @@ const Navbar: FC = () => {
                     )}
                 </div>
             </div>
-            <nav className={`navbar-container ${C(IsActive)}`}>
+            <nav
+                className={`navbar-container ${C(IsActive)}`}
+                style={{ transform: `translateX(${NavTransformX}px)` }}
+                ref={container}
+            >
                 {SAMPLE_NAV_PAGES.map((item, index) => {
                     return (
                         <NavPage
+                            key={index}
                             {...item}
                             className={C(IsActive)}
                             delay={IsActive ? index * 0.25 : 0}
