@@ -28,6 +28,21 @@ const SAMPLE_NAV_PAGES = [
         link: '/about',
         title: 'About Us',
     },
+    {
+        img: 'https://picsum.photos/1920/1080',
+        link: '/',
+        title: 'Home',
+    },
+    {
+        img: 'https://picsum.photos/1920/1080',
+        link: '/gallery',
+        title: 'Gallery',
+    },
+    {
+        img: 'https://picsum.photos/1920/1080',
+        link: '/about',
+        title: 'About Us',
+    },
 ]
 
 const Navbar: FC = () => {
