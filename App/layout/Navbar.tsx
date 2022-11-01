@@ -14,7 +14,7 @@ const Navbar = () => {
     const [IsActive, setIsActive] = useAtom(NavActiveAtom)
 
     return (
-        <nav className={`navbar-container ${C(IsActive)}`}>
+        <>
             <div className='toggle-nav' onClick={() => setIsActive(!IsActive)}>
                 <div className={`toggle-icon ${C(IsActive)}`}>
                     {!IsActive ? (
@@ -24,7 +24,8 @@ const Navbar = () => {
                     )}
                 </div>
             </div>
-        </nav>
+            <nav className={`navbar-container ${C(IsActive)}`}></nav>
+        </>
     )
 }
 
