@@ -120,7 +120,6 @@ const AlbumsWrapper: FC<AlbumsWrapperProps> = ({ LastAlbums }) => {
                     return 0
                 }
 
-                console.log(LastAlbums)
                 return (
                     <AlbumCard
                         key={index}
@@ -163,7 +162,6 @@ const AlbumCard: FC<AlbumCardProps> = ({ transform, LastAlbums }) => {
                 ]
 
             setActiveAlbum(RandomAlbum!)
-            console.log(RandomAlbum)
         }, 5000)
 
         return () => clearInterval(ChangeAlbum)
