@@ -18,7 +18,6 @@
     z-index: -1;
 
     transform: translateY(-50%);
-    transition: transform 0.65s cubic-bezier(0.45, 0.02, 0.09, 0.98) 0s;
 
     &.active {
         transform: translateY(0);

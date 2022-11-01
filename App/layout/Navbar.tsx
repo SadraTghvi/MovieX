@@ -56,30 +56,25 @@ const Navbar: FC = () => {
             document.getElementsByClassName('navbar-container')[0]
 
         Navcontainer?.addEventListener('mousemove', (e: any) => {
-            ReturnCardTransform(e)
+            if (!container.current) return
+            const { left } = container.current.getBoundingClientRect()
+            const { right } = container.current.getBoundingClientRect()
+            right
+            left
+            // width divide by two
+            const wdbyt = Math.floor(innerWidth / 2)
+
+            const mouseX = e.pageX
+
+            if (mouseX > wdbyt) {
+                console.log('first')
+                setNavTransformX(nav => nav - 1)
+            } else if (mouseX <= wdbyt) {
+                console.log('sec')
+                setNavTransformX(nav => nav + 1)
+            }
         })
     }, [])
-
-    const ReturnCardTransform = (e: any) => {
-        if (!container.current) return
-        const { left } = container.current.getBoundingClientRect()
-        const { right } = container.current.getBoundingClientRect()
-        right
-        left
-        // width divide by two
-        const wdbyt = Math.floor(innerWidth / 2)
-
-        const mouseX = e.pageX
-
-        if (mouseX > wdbyt) {
-            console.log('first')
-            setNavTransformX(NavTransformX - 1)
-        } else if (mouseX <= wdbyt) {
-            console.log('sec')
-            setNavTransformX(NavTransformX + 1)
-        }
-        console.log(container.current.getBoundingClientRect())
-    }
 
     return (
         <>
