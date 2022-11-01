@@ -48,10 +48,7 @@ const Navbar: FC = () => {
                 {SAMPLE_NAV_PAGES.map((item, index) => {
                     return (
                         <NavPage
-                            key={index}
-                            img={item.img}
-                            link={item.link}
-                            title={item.title}
+                            {...item}
                             className={C(IsActive)}
                             delay={IsActive ? index * 0.25 : 0}
                         />
