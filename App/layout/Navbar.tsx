@@ -67,11 +67,20 @@ const Navbar: FC = () => {
             const mouseX = e.pageX
 
             if (mouseX > wdbyt) {
-                console.log('first')
-                setNavTransformX(nav => nav - 1)
+                if (
+                    container.current.getBoundingClientRect().width / 2 >=
+                    -left
+                ) {
+                    setNavTransformX(nav => nav - 1)
+                    console.log(
+                        left,
+                        container.current.getBoundingClientRect().width
+                    )
+                }
             } else if (mouseX <= wdbyt) {
-                console.log('sec')
-                setNavTransformX(nav => nav + 1)
+                if (left <= 40) {
+                    setNavTransformX(nav => nav + 1)
+                }
             }
         })
     }, [])
