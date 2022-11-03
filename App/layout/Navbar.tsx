@@ -61,25 +61,41 @@ const Navbar: FC = () => {
             const { right } = container.current.getBoundingClientRect()
             right
             left
+
             // width divide by two
             const wdbyt = Math.floor(innerWidth / 2)
 
             const mouseX = e.pageX
 
             if (mouseX > wdbyt) {
+                // go right
+
                 if (
-                    container.current.getBoundingClientRect().width / 2 >=
+                    container.current.getBoundingClientRect().width / 3 >=
                     -left
                 ) {
-                    setNavTransformX(nav => nav - 1)
-                    console.log(
-                        left,
-                        container.current.getBoundingClientRect().width
-                    )
+                    if (mouseX >= innerWidth - 200) {
+                        setNavTransformX(nav => nav - 10)
+                    } else if (
+                        innerWidth - 200 > mouseX &&
+                        mouseX >= innerWidth - 500
+                    ) {
+                        setNavTransformX(nav => nav - 5)
+                    } else {
+                        setNavTransformX(nav => nav - 1)
+                    }
                 }
             } else if (mouseX <= wdbyt) {
+                // go left
+
                 if (left <= 40) {
-                    setNavTransformX(nav => nav + 1)
+                    if (mouseX <= 200) {
+                        setNavTransformX(nav => nav + 10)
+                    } else if (200 < mouseX && mouseX <= 100) {
+                        setNavTransformX(nav => nav + 5)
+                    } else {
+                        setNavTransformX(nav => nav + 1)
+                    }
                 }
             }
         })
